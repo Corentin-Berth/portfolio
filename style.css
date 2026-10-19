@@ -1,0 +1,474 @@
+/* Reset de base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;  line-height: 1.6;
+  background: linear-gradient(135deg, #0d1a3a 0%, #3a7bd5 100%);
+  color: #fff;
+}
+/* Header */
+header {
+  position: relative;
+  background: rgba(13, 26, 58, 0.95);
+  color: white;
+  padding: 20px 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 30px;
+  text-align: left;
+  overflow: hidden; /* pour éviter que l'image déborde */
+}
+
+header::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url('./src/banniere.jpg') center/cover no-repeat;
+  opacity: 0.13; /* très peu visible, ajuste si besoin */
+  z-index: 0;
+  pointer-events: none;
+}
+
+#about p {
+  margin-left: 40px;
+}
+
+.hidden-link {
+  color: inherit;        /* même couleur que ton texte */
+  text-decoration: none; /* enlève le soulignement */
+}
+.hidden-link:hover {
+  text-decoration: underline; /* optionnel, juste au survol */
+}
+
+
+.logo {
+  height: 60px;
+  width: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-left: 30px;
+  box-shadow: 0 2px 8px rgba(58,123,213,0.15);
+  flex-shrink: 0;
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* centre le texte horizontalement */
+  flex: 1;
+  justify-content: center;
+  text-align: center;
+}
+
+
+h1 {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 700;
+  letter-spacing: 2px; /* espace entre les lettres */
+  text-transform: uppercase; /* tout en majuscules */
+  color: #7d807d; /* ou une couleur qui colle avec ton thème */
+}
+
+.header-content h1 {
+  margin-bottom: 10px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  margin-top: 0;
+  justify-content: flex-start;
+  padding-left: 0;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.2s;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background: #3a7bd5;
+  transition: width 0.3s;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+nav a:hover {
+  color: #3a7bd5;
+}
+
+/* Sections */
+section {
+  padding: 50px 20px;
+  max-width: 800px;
+  margin: auto;
+  border-radius: 12px;
+  box-shadow: none;
+  background: none; /* retire le fond */
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+/* Apparition des sections */
+section.hidden {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s, transform 0.7s;
+}
+section.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Projets */
+.project-list {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.project {
+  background: none; /* retire le fond */
+  padding: 20px;
+  border-radius: 10px;
+  flex: 1 1 calc(50% - 20px);
+  color: #fff;
+  box-shadow: none;
+}
+
+.skills-list-vertical {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  align-items: flex-start;
+  margin-left: 40px; /* décale le contenu vers la droite */
+}
+
+.skills-list-vertical hr {
+  width: 100%;
+  border: none;
+  border-top: 2px solid #3a7bd5; /* bleu clair */
+  margin: 18px 0;
+  opacity: 0.8;
+}
+
+.skill-item {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.skill-logo {
+  height: 60px;
+  width: 60px;
+  object-fit: contain;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.08);
+  box-shadow: 0 2px 8px rgba(58,123,213,0.15);
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.skill-logo:hover {
+  transform: scale(1.1);
+}
+
+.skill-item span {
+  font-size: 1.1em;
+  color: #fff;
+}
+/* Spécifique à la section contact */
+#contact {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background: rgba(13, 26, 58, 0.95); /* même fond que le footer */
+  border-radius: 0;
+  box-shadow: none;
+  max-width: none;
+}
+
+#contact .contact-card,
+.contact-card {
+  width: 100%;
+  margin: 0;
+  padding: 40px 60px 24px 60px;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: #fff;
+  background: none; /* retire le fond ici */
+  max-width: none;
+}
+
+.contact-card-logo {
+  height: 48px;
+  width: 48px;
+  border-radius: 12px;
+  margin-bottom: 16px;
+  object-fit: cover;
+}
+
+.contact-card h3 {
+  margin-bottom: 12px;
+  font-size: 1.3em;
+  font-weight: bold;
+}
+
+.contact-card p {
+  margin-bottom: 8px;
+  font-size: 1em;
+}
+
+.contact-socials {
+  display: flex;
+  gap: 22px;
+  margin-top: 22px;
+}
+
+.contact-social-logo {
+  height: 32px;
+  width: 32px;
+  border-radius: 8px;
+
+  transition: transform 0.2s;
+}
+
+.contact-social-logo:hover {
+  transform: scale(1.15);
+}
+
+.contact-separator {
+  width: 100%;
+  border: none;
+  border-top: 2px solid #fff;
+  opacity: 0.07; /* plus claire */
+  margin: 0;
+}
+
+.mail-link {
+  color: inherit;        /* même couleur que le texte autour */
+  text-decoration: none; /* enlève le soulignement */
+  cursor: pointer;       /* pour indiquer que c'est cliquable */
+}
+.mail-link:hover {
+  text-decoration: underline; /* optionnel, juste au survol */
+}
+
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: rgba(13, 26, 58, 0.95);
+  color: white;
+  margin-top: 0; /* retire l'espace au-dessus du footer */
+}
+
+/* Bouton retour en haut */
+#topBtn {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  background: #3a7bd5;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 18px;
+  font-size: 1.2em;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(58,123,213,0.15);
+  z-index: 999;
+  transition: background 0.2s;
+  display: none; /* JS gère l'affichage */
+}
+#topBtn:hover {
+  background: #0d1a3a;
+}
+
+.skills-list-vertical h3 {
+  margin-top: 30px;
+  margin-bottom: 18px;
+  color: #3a7bd5;
+  font-size: 1.15em;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.project-carousel {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  max-width: 600px;
+  margin: 40px auto 20px auto;
+  position: relative;
+  min-height: 240px; /* augmente la hauteur minimale, ex : 240px ou plus */
+}
+
+/* Optionnel : agrandir les images */
+.project-img {
+  width: 360px;   /* ex : 360px */
+  height: 200px;  /* ex : 200px */
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(58,123,213,0.15);
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.project-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.project-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+  position: relative;
+}
+
+.carousel-controls {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.carousel-controls button {
+  background: #3a7bd5;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 1.7em;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+.carousel-controls button:hover {
+  background: #0d1a3a;
+}
+.carousel-controls button svg {
+  display: block;
+  margin: auto;
+}
+
+/* Pour que le contenu reste au-dessus */
+header > * {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 900px) {
+  header,
+  .contact-card,
+  .project-carousel {
+    padding-left: 16px;
+    padding-right: 16px;
+    max-width: 100%;
+  }
+  .skills-list-vertical {
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+  .project-img {
+    width: 100%;
+    max-width: 320px;
+    height: auto;
+  }
+  .project-carousel {
+    min-height: 180px;
+  }
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+  .carousel-controls {
+    left: 0;
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    padding: 18px 0 12px 0;
+  }
+  .logo {
+    height: 40px;
+    width: 40px;
+    margin-left: 0;
+  }
+  .header-content {
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+  nav ul {
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    padding-left: 0;
+  }
+  h1, h2, h3 {
+    font-size: 1.2em;
+  }
+  .logo,
+  .contact-card-logo,
+  .skill-logo,
+  .contact-social-logo {
+    width: 40px;
+    height: 40px;
+  }
+  .project-img {
+    max-width: 220px;
+  }
+  .contact-card {
+    padding: 24px 8px 12px 8px;
+  }
+  .skills-list-vertical {
+    margin-left: 8px;
+    margin-right: 8px;
+  }
+}
