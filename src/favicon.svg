@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="15" fill="#0d1927"/>
+  <path d="M1.5 20V15A13.5 13.5 0 0 1 15 1.5h34A13.5 13.5 0 0 1 62.5 15v34A13.5 13.5 0 0 1 49 62.5H15A13.5 13.5 0 0 1 1.5 49v-5" fill="none" stroke="#55e1d0" stroke-opacity=".4"/>
+  <text x="31" y="42" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="700" letter-spacing="-3" fill="#edf4f7">CB<tspan fill="#55e1d0">.</tspan></text>
+</svg>

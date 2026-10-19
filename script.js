@@ -1,62 +1,38 @@
-document.querySelectorAll('section').forEach(section => {
-  section.classList.add('hidden');
-});
+const menuButton = document.querySelector('.menu-toggle');
+const navigation = document.querySelector('.site-nav');
 
-function revealSections() {
-  document.querySelectorAll('section.hidden').forEach(section => {
-    const rect = section.getBoundingClientRect();
-    if (rect.top < window.innerHeight - 80) {
-      section.classList.remove('hidden');
-      section.classList.add('fade-in');
-    }
-  });
-}
-window.addEventListener('scroll', revealSections);
-window.addEventListener('load', revealSections);
-
-document.querySelectorAll('.skill-logo, .contact-social-logo').forEach(img => {
-  img.addEventListener('mouseenter', () => {
-    img.style.transform = 'scale(1.15)';
-    img.style.transition = 'transform 0.2s, box-shadow 0.2s';
-    img.style.boxShadow = '0 0 16px #3a7bd5';
-  });
-  img.addEventListener('mouseleave', () => {
-    img.style.transform = 'scale(1)';
-    img.style.boxShadow = '';
-  });
-});
-
-const topBtn = document.createElement('button');
-topBtn.innerText = '↑ Haut';
-topBtn.id = 'topBtn';
-topBtn.style.display = 'none';
-document.body.appendChild(topBtn);
-
-window.addEventListener('scroll', () => {
-  topBtn.style.display = window.scrollY > 300 ? 'block' : 'none';
-});
-topBtn.addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
-
-// Carrousel de projets
-const slides = document.querySelectorAll('.project-slide');
-let currentSlide = 0;
-
-function showSlide(index) {
-  slides.forEach((slide, i) => {
-    slide.classList.toggle('active', i === index);
-  });
+function closeMenu() {
+  menuButton.setAttribute('aria-expanded', 'false');
+  menuButton.setAttribute('aria-label', 'Ouvrir le menu');
+  navigation.classList.remove('is-open');
 }
 
-document.getElementById('prevProject').addEventListener('click', () => {
-  currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-  showSlide(currentSlide);
-});
-document.getElementById('nextProject').addEventListener('click', () => {
-  currentSlide = (currentSlide + 1) % slides.length;
-  showSlide(currentSlide);
+menuButton.addEventListener('click', () => {
+  const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+  menuButton.setAttribute('aria-expanded', String(!isOpen));
+  menuButton.setAttribute('aria-label', isOpen ? 'Ouvrir le menu' : 'Fermer le menu');
+  navigation.classList.toggle('is-open', !isOpen);
 });
 
-// Affiche le premier slide au chargement
-showSlide(currentSlide);
+navigation.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') closeMenu();
+});
+
+document.querySelector('#year').textContent = new Date().getFullYear();
+
+const revealTargets = document.querySelectorAll('.about-copy, .section-heading, .project-card, .skill-group, .contact-inner > *');
+if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealTargets.forEach(target => {
+    target.classList.add('reveal');
+    observer.observe(target);
+  });
+}
